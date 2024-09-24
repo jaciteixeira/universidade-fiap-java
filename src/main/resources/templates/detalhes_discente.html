@@ -1,0 +1,48 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragmentos :: conteudo-header('Detalhes do Discente')}" />
+
+<body>
+
+	<table border="1px" class="table table-hover">
+
+		<tr>
+
+			<td th:text="#{nome}">Nome do Discente:</td>
+			<td th:text="${discente.pessoa.nome}">nome</td>
+		</tr>
+		<tr>
+
+			<td>CPF: </td>
+			<td th:text="${discente.pessoa.cpf}"> cpf</td>
+		</tr>
+		<tr>
+
+			<td>RM: </td>
+			<td th:text="${discente.rm}">rm</td>
+		</tr>
+		<tr>
+
+			<td th:text="#{idade}">  Idade: </td>
+			<td th:text="${discente.pessoa.idade}">idade</td>
+		</tr>
+		<tr>
+
+			<td th:text="#{status}">Status do Discente: </td>
+			<td th:text="${discente.status}">status</td>
+		</tr>
+		<tr>
+
+			<td th:text="#{pais_origem}">Pais Origem: </td>
+			<td th:text="${discente.pessoa.pais_origem}">pais_origem</td>
+		</tr>
+
+
+
+	</table>
+
+
+</body>
+
+</html>

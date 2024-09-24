@@ -1,0 +1,37 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragmentos :: conteudo-header('Login')}" />
+<body>
+
+	<div class="container">
+
+
+
+		<h1 th:text="#{titulo.tela.login}">Tela de Login</h1>
+		<br>
+		<form th:action="@{/login}" method="post">
+
+			<span th:text="#{usuario.tela.login}">Usuário:</span> <input class="form-control" type="text" id="username"
+				name="username"><br>
+				 <span th:text="#{senha.tela.login}">Senha:</span> <input class="form-control"
+				type="password" id="password" name="password"><br>
+				
+			<div th:if="${param.erro}">
+				<p style="color: red"><span th:text="#{msg_login_erro}">Usuário ou senha incorretos</span></p>
+			</div>
+			
+			<div th:if="${param.logout}">
+				<p style="color: green;"><span th:text="#{msg_logout_sucesso}"> Você saiu com sucesso</span></p>
+			</div>
+			
+			<button type="submit"><span th:text="#{botao.tela.login}">Logar</span></button>
+
+
+		</form>
+
+	</div>
+
+</body>
+</html>

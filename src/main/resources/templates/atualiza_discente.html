@@ -1,0 +1,61 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <title>Lista</title>
+  </head>
+  <body>
+    <div class="container">
+        <div class="row">
+            <h1 th:text="#{atualizar_discente}">Lista</h1>
+        </div>
+        <div class="row">
+            <form th:object="${discente}" th:action="@{/atualizar_discente/{idDiscente}(idDiscente = ${discente.id})}" method="post">
+            RM <input class="form-control" type="text" th:field="*{rm}"><br>
+            <span th:text="#{nome}" >Nome</span> <input class="form-control" type="text" th:field="*{pessoa.nome}" th:errorclass="is-invalid"> 
+            <div class="invalid-feedback" th:errors="*{pessoa.nome}"></div><br>
+            <span th:text="#{idade}">Idade</span> <input class="form-control" type="number" th:field="*{pessoa.idade}" th:errorclass="is-invalid">
+            <div class="invalid-feedback" th:errors="*{pessoa.idade}"></div><br> 
+            CPF <input class="form-control" type="text" th:field="*{pessoa.cpf}" th:errorclass="is-invalid">
+            <div class="invalid-feedback" th:errors="*{pessoa.cpf}"></div><br>
+            <span th:text="#{pais_origem}">País Origem </span>
+            <select class="form-select" th:field="*{pessoa.pais_origem}">
+				<option th:each="pais : ${lista_pais_origem}" 
+						th:value="${pais}" 
+						th:with="pais_chave = 'opcoespaises.' + ${pais.name().toLowerCase()}"
+						th:text="#{${pais_chave}}"  />
+			</select>
+            <br>
+            <span th:text="#{lista_status}">Lista Status</span>
+            <select class="form-select" th:field="*{status}">
+            	<option th:each="status : ${lista_status}" 
+            			th:value="${status}" 
+            			th:with="status_chave = 'opcoesstatus.' + ${status.name().toLowerCase()} "
+            			th:text="#{${status_chave}}" />
+            </select><br>
+            
+            <span th:text="#{lista_nivel}">Lista Niveis</span>
+            <select class="form-select" th:field="*{nivel}">
+            	<option th:each="nivel : ${lista_niveis}" 
+            			th:value="${nivel}" 
+            			th:with="nivel_chave = 'opcoesnivel.' + ${nivel.name().toLowerCase()}"
+            			th:text="#{${nivel_chave}}" />
+            </select>
+            <button type="submit"><span th:text="#{atualizar}">Enviar</span></button>
+            </form>
+        </div>
+        <div class="row">
+            <a href="/index1">
+				<span th:text="#{msg_retorno_lista_discente}">Retornar para listagem de discentes</span></a>
+        </div>
+    </div>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+  </body>
+</html>
